@@ -31,7 +31,7 @@ export const List: React.FC<Props> = (props) => {
     
     return (
     <>
-        <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer>
             <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                     <TableRow>
