@@ -1,30 +1,27 @@
 import React from "react";
-import { MemberDetailEntity } from "./detail.vm";
+import { CharacterDetailEntity, MemberDetailEntity } from "./detail.vm";
 import { Card, CardContent, CardMedia, List, ListItem, Typography } from "@mui/material";
 
 interface Props {
-    member: MemberDetailEntity;
+    item: MemberDetailEntity | CharacterDetailEntity;
+    details: string[];
 }
 
 export const Detail: React.FC<Props> = (props) => {
-    const {member} = props;
-    console.log(member);
+    const {item, details} = props;
     return (
         <Card sx={{ maxWidth: 345, mb: 3 }}>
             <CardMedia
                 sx={{ height: 300 }}
-                image={member.avatar_url}
-                title={member.login}
+                image={item[details[0]]}
+                title={item.name}
             />
             <CardContent>
                 <Typography gutterBottom variant="h3">
-                {member.login}
+                {item.name}
                 </Typography>
                 <List>
-                    <ListItem>id: {member.id}</ListItem>
-                    <ListItem>name: {member.name}</ListItem>
-                    <ListItem>company: {member.company}</ListItem>
-                    <ListItem>bio: {member.bio}</ListItem>
+                    {details.slice(1).map((detail: string) => <ListItem>{detail}: {item[detail]}</ListItem>)}
                 </List>
             </CardContent>
         </Card>

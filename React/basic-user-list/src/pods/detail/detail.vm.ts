@@ -15,3 +15,23 @@ export const createDefaultMemberDetail = (): MemberDetailEntity => ({
     company: "",
     bio: "",
 });
+
+export const memberDetails = ['avatar_url', 'id', 'login', 'company', 'bio'];
+
+export interface CharacterDetailEntity {
+    id: string;
+    name: string;
+    image: string;
+    species: string;
+    status: string;
+}
+
+export const createDefaultCharacterDetail = (): CharacterDetailEntity => ({
+    id: "",
+    name: "",
+    image: "",
+    species: "",
+    status: "",
+});
+
+export const characterDetails = ['image', 'id', 'species', 'status'];

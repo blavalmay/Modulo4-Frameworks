@@ -1,1 +1,2 @@
-export * from './detail.container';
+export * from './detail-member.container';
+export * from './detail-character.container';

@@ -1,3 +1,5 @@
-export * from "./detail.scene"
-export * from "./list.scene"
+export * from "./detail-member.scene"
+export * from "./list-members.scene"
+export * from "./list-characters.scene"
+export * from "./detail-character.scene"
 export * from "./login.scene"

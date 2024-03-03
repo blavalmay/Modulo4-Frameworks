@@ -1,21 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { routes } from "@/core";
-import { Column, memberEntity } from "./list.vm";
+import { Column, characterEntity, memberEntity } from "./list.vm";
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Button } from "@mui/material";
+import { SwitchRoutes } from "@/core/router/routes";
 
 interface Props {
-    list: memberEntity[];
+    list: memberEntity[] | characterEntity[];
+    columns: Column[];
+    detailRoute: Function;
 }
 
-const columns: Column[] = [
-    { id: 'id', label: 'ID', minWidth: 100 },
-    { id: 'login', label: 'Name', minWidth: 150 },
-    { id: 'action', label: 'Acción', minWidth: 100 },
-]
-
 export const List: React.FC<Props> = (props) => {
-    const { list } = props;
+    const { list, columns, detailRoute } = props;
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -57,7 +54,7 @@ export const List: React.FC<Props> = (props) => {
                                 return (
                                     <TableCell key={column.id} align={column.align}>
                                     {column.id === 'action'
-                                        ? <Link to={routes.detail(row['login'])}>Ver más</Link>
+                                        ? <Link to={column.linkId ? detailRoute(row[column.linkId]) : ''}>Ver más</Link>
                                         : value}
                                     </TableCell>
                                 );

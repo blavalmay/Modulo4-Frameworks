@@ -6,7 +6,7 @@ interface Props {
     setSearchBy: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const SearchList: React.FC<Props> = (props) => {
+export const ListSubmitSearch: React.FC<Props> = (props) => {
     const { searchBy, setSearchBy } = props;
 
     const [inputValue, setInputValue] = useState('Lemoncode');
@@ -21,7 +21,7 @@ export const SearchList: React.FC<Props> = (props) => {
     }
 
     return (
-        <form onSubmit={handleSearch}>
+        <form onSubmit={handleSearch} className="list-search">
             <TextField
                 placeholder="Organización"
                 value={inputValue}

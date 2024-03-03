@@ -1,16 +1,17 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { MemberDetailEntity, createDefaultMemberDetail } from "./detail.vm";
+import { MemberDetailEntity, createDefaultMemberDetail, memberDetails } from "./detail.vm";
 import { Detail } from "./detail.component";
 import { routes } from "@/core";
 
-export const DetailContainer: React.FC = () => {
+export const DetailMemberContainer: React.FC = () => {
     // para traerte los parámetros de la url
     const { id } = useParams<{ id: string }>();
-
     const [member, setMember] = React.useState<MemberDetailEntity>(
         createDefaultMemberDetail()
     );
+    const handleDetails = memberDetails;
+
     React.useEffect(() => {
         fetch(`https://api.github.com/users/${id}`)
           .then((response) => response.json())
@@ -19,8 +20,8 @@ export const DetailContainer: React.FC = () => {
 
     return (
         <>
-            <Detail member={member}/>
-            <Link to={routes.list}>Lista de usuarios</Link>
+            <Detail item={member} details={handleDetails}/>
+            <Link to={routes.listMembers}>Lista de usuarios</Link>
         </>
     );
 };
