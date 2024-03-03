@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-// en este caso hemos configurado que la @ es src, en el webpack config y en el ts config. Buscar "@"
 import { DetailMemberScene, ListCharactersScene, ListMembersScene } from "@/scenes";
 import {switchRoutes} from "./routes";
 import { DetailCharacterScene } from "@/scenes/detail-character.scene";

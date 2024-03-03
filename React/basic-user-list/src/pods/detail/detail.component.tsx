@@ -15,13 +15,14 @@ export const Detail: React.FC<Props> = (props) => {
                 sx={{ height: 300 }}
                 image={item[details[0]]}
                 title={item.name}
+                component='img'
             />
             <CardContent>
                 <Typography gutterBottom variant="h3">
                 {item.name}
                 </Typography>
                 <List>
-                    {details.slice(1).map((detail: string) => <ListItem>{detail}: {item[detail]}</ListItem>)}
+                    {details.slice(1).map((detail: string) => <ListItem key={detail}>{detail}: {item[detail]}</ListItem>)}
                 </List>
             </CardContent>
         </Card>

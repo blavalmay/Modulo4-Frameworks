@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { routes } from "@/core";
 import { Column, characterEntity, memberEntity } from "./list.vm";
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Button } from "@mui/material";
-import { SwitchRoutes } from "@/core/router/routes";
 
 interface Props {
     list: memberEntity[] | characterEntity[];

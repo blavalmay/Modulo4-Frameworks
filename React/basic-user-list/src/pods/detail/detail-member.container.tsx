@@ -5,7 +5,6 @@ import { Detail } from "./detail.component";
 import { routes } from "@/core";
 
 export const DetailMemberContainer: React.FC = () => {
-    // para traerte los parámetros de la url
     const { id } = useParams<{ id: string }>();
     const [member, setMember] = React.useState<MemberDetailEntity>(
         createDefaultMemberDetail()

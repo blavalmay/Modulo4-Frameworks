@@ -11,16 +11,15 @@ export const ProfileContext = React.createContext<ProfileContextModel>(null);
 
 export const ProfileProvider: React.FC<React.PropsWithChildren> = (props) => {
     const {children} = props;
-    // const [userProfile, setUserProfile] = React.useState<UserProfile>(null);
+    const [userProfile, setUserProfile] = React.useState<UserProfile>(null);
 
-    // const handleLogin = (username: string) => {
-    //     setUserProfile({ username });
-    // };
+    const handleLogin = (username: string) => {
+        setUserProfile({ username });
+    };
 
     return (
-        // <ProfileContext.Provider value={{userProfile, setUserProfile}}>
-        //     {!userProfile ? <LoginScene onLogin={handleLogin}/> : <>{children}</>}
-        // </ProfileContext.Provider>
-        <>{children}</>
+        <ProfileContext.Provider value={{userProfile, setUserProfile}}>
+            {!userProfile ? <LoginScene onLogin={handleLogin}/> : <>{children}</>}
+        </ProfileContext.Provider>
     )
 }
