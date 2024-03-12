@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { characterEntity } from "./list.vm";
+import { PictureInfo } from "./list.vm";
 import { List } from "./list.component";
 import { getCharacters } from "./api/api";
 import { mapCharactersToVM } from "./list.mappers";
 import { Alert } from "@mui/material";
 
 export const ListAlienCharactersContainer: React.FC = () => {
-    const [list, setList] = React.useState<characterEntity[]>([]);
+    const [list, setList] = React.useState<PictureInfo[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 

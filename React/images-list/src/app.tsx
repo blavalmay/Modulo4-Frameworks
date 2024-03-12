@@ -1,6 +1,11 @@
 import React from "react";
 import { AppRouter } from "./core";
+import { SelectedProvider } from "./core/providers";
 
 export const App = () => {
-  return <AppRouter />;
+  return (
+    <SelectedProvider>
+      <AppRouter />
+    </SelectedProvider>
+  );
 };
