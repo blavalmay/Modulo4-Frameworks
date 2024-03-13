@@ -7,4 +7,5 @@ const mapCharacterToVM = (data: am.characterResultsApi): vm.PictureInfo => ({
     id: data.id,
     name: data.name,
     image: data.image,
+    selected: false,
 });
