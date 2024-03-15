@@ -3,24 +3,35 @@ import React from "react";
 
 interface SelectedContextModel {
     selectedList: PictureInfo[];
-    updateSelectedList: (list: PictureInfo[]) => void;
+    addSelectedItem: (listItem: PictureInfo) => void;
+    removeSelectedItem: (listItem: PictureInfo) => void;
 }
 
 export const SelectedContext = React.createContext<SelectedContextModel>({
     selectedList: [],
-    updateSelectedList: () => {},
+    addSelectedItem: () => {},
+    removeSelectedItem: () => {},
 });
 
 export const SelectedProvider: React.FC<React.PropsWithChildren> = (props) => {
     const {children} = props;
     const [selectedList, setSelectedList] = React.useState<PictureInfo[]>([]);
 
-    const updateSelectedList = (list: PictureInfo[]) => {
-        setSelectedList(list)
+    const addSelectedItem = (listItem: PictureInfo) => {
+        setSelectedList([
+            ...selectedList,
+            listItem
+        ])
+    };
+
+    const removeSelectedItem = (listItem: PictureInfo) => {
+        setSelectedList(
+            selectedList.filter(item => item.id !== listItem.id)
+        )
     };
 
     return (
-        <SelectedContext.Provider value={{selectedList, updateSelectedList}}>
+        <SelectedContext.Provider value={{selectedList, addSelectedItem, removeSelectedItem}}>
             {children}
         </SelectedContext.Provider>
     )

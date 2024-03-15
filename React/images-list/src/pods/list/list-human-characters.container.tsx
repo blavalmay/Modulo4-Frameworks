@@ -13,7 +13,6 @@ export const ListHumanCharactersContainer: React.FC = () => {
     React.useEffect(() => {
         getCharacters()
         .then(data => {
-            console.log(data.results);
             mapCharactersToVM(data.results);
             setList(data.results.filter((result) => result.species === 'Human'));
             setLoading(false);

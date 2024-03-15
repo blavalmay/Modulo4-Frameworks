@@ -10,7 +10,7 @@ interface Props {
 
 export const Cart: React.FC<Props> = (props) => {
     const { selected } = props;
-    const { updateSelectedList } = React.useContext(SelectedContext);
+    const { removeSelectedItem } = React.useContext(SelectedContext);
 
     return (
         <List 
@@ -29,7 +29,7 @@ export const Cart: React.FC<Props> = (props) => {
                         <IconButton edge="end" aria-label="comments" onClick={
                             () => {
                                 item.selected = false;
-                                updateSelectedList(selected.filter((listimage) => listimage.selected === true));
+                                removeSelectedItem(item);
                             }
                             }>
                             <DeleteIcon />

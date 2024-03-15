@@ -9,7 +9,7 @@ interface Props {
 
 export const List: React.FC<Props> = (props) => {
     const { list } = props;
-    const { selectedList, updateSelectedList } = React.useContext(SelectedContext);
+    const { selectedList, addSelectedItem, removeSelectedItem } = React.useContext(SelectedContext);
     
     const handleSelectedCheckbox = useCallback((item: PictureInfo) => {
         return item.selected ?? false;
@@ -29,7 +29,7 @@ export const List: React.FC<Props> = (props) => {
                                     title={item.name}
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5">{item.name}</Typography>
+                                    <Typography gutterBottom variant="h6">{item.name}</Typography>
                                 </CardContent>
                                 <CardActions>
                                     <Button size="small" >
@@ -37,8 +37,14 @@ export const List: React.FC<Props> = (props) => {
                                             checked={selected}
                                             onChange={
                                                 (e) => {
-                                                    e.target.checked ? item.selected = true : item.selected = false;
-                                                    updateSelectedList(list.filter((listimage) => listimage.selected === true));
+                                                    if(e.target.checked) {
+                                                        item.selected = true;
+                                                        addSelectedItem(item);
+                                                    }else{
+                                                        item.selected = false;
+                                                        removeSelectedItem(item);
+                                                    }
+                                                    console.log(selectedList);
                                                 }
                                             }
                                         />
