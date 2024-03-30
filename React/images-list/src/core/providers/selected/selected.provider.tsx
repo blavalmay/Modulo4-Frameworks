@@ -5,12 +5,14 @@ interface SelectedContextModel {
     selectedList: PictureInfo[];
     addSelectedItem: (listItem: PictureInfo) => void;
     removeSelectedItem: (listItem: PictureInfo) => void;
+    removeAllItems: () => void;
 }
 
 export const SelectedContext = React.createContext<SelectedContextModel>({
     selectedList: [],
     addSelectedItem: () => {},
     removeSelectedItem: () => {},
+    removeAllItems: () => {},
 });
 
 export const SelectedProvider: React.FC<React.PropsWithChildren> = (props) => {
@@ -30,8 +32,12 @@ export const SelectedProvider: React.FC<React.PropsWithChildren> = (props) => {
         )
     };
 
+    const removeAllItems = () => {
+        setSelectedList([])
+    };
+
     return (
-        <SelectedContext.Provider value={{selectedList, addSelectedItem, removeSelectedItem}}>
+        <SelectedContext.Provider value={{selectedList, addSelectedItem, removeSelectedItem, removeAllItems}}>
             {children}
         </SelectedContext.Provider>
     )

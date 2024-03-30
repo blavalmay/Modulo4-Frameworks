@@ -1,12 +1,12 @@
 import React from "react";
 import { ListHumanCharactersContainer } from '@/pods';
-import { AppLayout } from "@/layout";
+import { ListLayout } from "@/layout";
 
 export const ListHumanCharactersScene: React.FC = () => {
     
     return (
-        <AppLayout>
+        <ListLayout>
             <ListHumanCharactersContainer />
-        </AppLayout>
+        </ListLayout>
     );
 };

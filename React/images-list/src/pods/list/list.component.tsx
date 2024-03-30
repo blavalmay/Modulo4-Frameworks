@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { PictureInfo } from "./list.vm";
 import { Button, Card, CardActions, CardContent, CardMedia, Checkbox, Grid, Typography } from "@mui/material";
 import { SelectedContext, SelectedProvider } from "@/core/providers";
@@ -12,7 +12,8 @@ export const List: React.FC<Props> = (props) => {
     const { selectedList, addSelectedItem, removeSelectedItem } = React.useContext(SelectedContext);
     
     const handleSelectedCheckbox = useCallback((item: PictureInfo) => {
-        return item.selected ?? false;
+        const selectedItem = selectedList.filter((selectedItem) => selectedItem.id === item.id);
+        return selectedItem[0]?.selected ?? false;
     }, [selectedList]);
 
     return (
@@ -44,7 +45,6 @@ export const List: React.FC<Props> = (props) => {
                                                         item.selected = false;
                                                         removeSelectedItem(item);
                                                     }
-                                                    console.log(selectedList);
                                                 }
                                             }
                                         />

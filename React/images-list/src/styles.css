@@ -12,3 +12,7 @@ body {
     margin-right: 1rem;
     text-decoration: none;
 }
+
+.app-bar .active {
+    text-decoration: underline;
+}
