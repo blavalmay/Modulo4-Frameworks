@@ -1,0 +1,9 @@
+body {
+    font-family: Sans-Serif;
+    background-color: #f7f7f7;
+}
+
+.order-table th {
+    background-color: #fafafa;
+    font-weight: 600;
+}
