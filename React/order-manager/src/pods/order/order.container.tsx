@@ -1,8 +1,12 @@
 import React from "react"
-import { OrderList } from "./components"
+import { OrderHeader, OrderList } from "./components"
+import { orderList } from "@/core"
 
 export const OrderContainer = () => {
     return (
-        <OrderList/>
+        <>
+            <OrderHeader/>
+            <OrderList list={orderList}/>
+        </>
     )
 }
