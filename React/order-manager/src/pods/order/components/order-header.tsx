@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, Button, Grid, TextField, Slider, Box } f
 export const OrderHeader = () => {
     return (
         <>
-        <Card sx={{marginBottom: '10px'}}>
+        <Card sx={{marginBottom: '10px'}} className="order-header">
             <CardContent>
                 <Grid container spacing={2}>
                     <Grid item>
@@ -19,8 +19,8 @@ export const OrderHeader = () => {
                     <Grid item sx={{pointerEvents: 'none'}}>
                         <TextField label="Importe total" variant="outlined" size="small" value="8658" aria-readonly/>
                     </Grid>
-                    <Grid item sx={{minWidth: '250px', pointerEvents: 'none'}}>
-                        <Typography sx={{fontSize: '0.75rem'}}>Estado</Typography>
+                    <Grid item className="order-header__status">
+                        <Typography><span>Estado</span><span>30%</span></Typography>
                         <Slider value={30} />
                     </Grid>
                 </Grid>

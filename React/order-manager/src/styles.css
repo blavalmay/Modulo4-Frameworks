@@ -7,3 +7,31 @@ body {
     background-color: #fafafa;
     font-weight: 600;
 }
+
+.order-header__status {
+    min-width: 250px;
+    pointer-events: none;
+}
+
+.order-header__status .MuiTypography-root {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1;
+}
+
+.order-header__status .MuiTypography-root span:first-of-type {
+    font-size: 0.75rem;
+}
+
+.order-header__status .MuiSlider-root {
+    padding: 0;
+}
+
+.order-header__status .MuiSlider-thumb {
+    display: none;
+}
+
+.order-header__status .MuiSlider-rail {
+    height: 6px;
+    background-color: #c7c7c7;
+}
