@@ -8,6 +8,15 @@ body {
     font-weight: 600;
 }
 
+.order-header__date input {
+    padding: 8.5px 14px;
+    padding-right: 0;
+}
+
+.order-header__amount {
+    pointer-events: none;
+}
+
 .order-header__status {
     min-width: 250px;
     pointer-events: none;

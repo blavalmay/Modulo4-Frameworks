@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, CardContent, Typography, Button, Grid, TextField, Slider, Box } from "@mui/material";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export const OrderHeader = () => {
     return (
@@ -13,10 +15,12 @@ export const OrderHeader = () => {
                     <Grid item>
                         <TextField label="Proveedor" variant="outlined" size="small" />
                     </Grid>
-                    <Grid item>
-                        <TextField label="Fecha" variant="outlined" size="small" />
+                    <Grid item className="order-header__date">
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker />
+                        </LocalizationProvider>
                     </Grid>
-                    <Grid item sx={{pointerEvents: 'none'}}>
+                    <Grid item className="order-header__amount">
                         <TextField label="Importe total" variant="outlined" size="small" value="8658" aria-readonly/>
                     </Grid>
                     <Grid item className="order-header__status">
