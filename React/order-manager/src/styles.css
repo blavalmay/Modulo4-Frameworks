@@ -44,3 +44,15 @@ body {
     height: 6px;
     background-color: #c7c7c7;
 }
+
+.order-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px;
+}
+.order-modal h5 {
+    margin-top: 20px;
+}

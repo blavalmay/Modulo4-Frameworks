@@ -1,15 +1,19 @@
-import React from "react"
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Checkbox, ButtonGroup, Button } from "@mui/material"
+import React, { useEffect, useMemo } from "react"
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Checkbox, ButtonGroup, Button, TextField } from "@mui/material"
 import { orderApi } from "@/core/api/api.model";
 
 interface Props {
     list: orderApi[];
+    state: boolean[];
+    onStatusChange: (selectedItems: readonly number[], status: boolean) => void;
+    onAmountChange: (newValue: string, id: number) => void;
 }
 
 const headCells: string[] = ['Estado', 'Descripción', 'Importe'];
 
 export const OrderList: React.FC<Props> = (props) => {
     const [selected, setSelected] = React.useState<readonly number[]>([]);
+    const [inputValue, setInputValue] = React.useState('');
 
     const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
@@ -41,11 +45,21 @@ export const OrderList: React.FC<Props> = (props) => {
 
     const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value);
+    }
+
     return (
         <>
         <ButtonGroup variant="outlined" sx={{marginBottom: '20px'}}>
-            <Button>Validar</Button>
-            <Button>Invalidar</Button>
+            <Button onClick={() => {
+                props.onStatusChange(selected, true)
+                setSelected([])
+            }}>Validar</Button>
+            <Button onClick={() => {
+                props.onStatusChange(selected, false)
+                setSelected([])
+            }}>Invalidar</Button>
         </ButtonGroup>
         <TableContainer component={Paper}>
             <Table className="order-table">
@@ -63,7 +77,7 @@ export const OrderList: React.FC<Props> = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.list.map((row) => {
+                    {props.list.map((row, index) => {
                         const isItemSelected = isSelected(row.id);
                         return (
                             <TableRow
@@ -77,9 +91,26 @@ export const OrderList: React.FC<Props> = (props) => {
                                         checked={isItemSelected}
                                     />
                                 </TableCell>
-                                <TableCell>{row.validated ? 'Válido' : 'Pendiente'}</TableCell>
+                                <TableCell>{props.state[index] ? 'Válido' : 'Pendiente'}</TableCell>
                                 <TableCell>{row.description}</TableCell>
-                                <TableCell>{`${row.amount} €`}</TableCell>
+                                <TableCell onClick={e => e.stopPropagation()}>
+                                        <TextField
+                                            type="number"
+                                            variant="standard"
+                                            size="small"
+                                            defaultValue={row.amount}
+                                            sx={{ width: '120px' }}
+                                            onChange={handleChange}
+                                        />
+                                        €
+                                        <Button
+                                            size="small"
+                                            sx={{marginLeft: '10px'}}
+                                            onClick={() => props.onAmountChange(inputValue, row.id)}
+                                        >
+                                            Actualizar
+                                        </Button>
+                                </TableCell>
                             </TableRow>
                         );
                     })}
