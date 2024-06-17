@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MenuPublicComponent } from './layout/menu-public/menu-public.component';
 import { MenuPrivateComponent } from './layout/menu-private/menu-private.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MenuPublicComponent, MenuPrivateComponent],
+  imports: [CommonModule, RouterOutlet, MenuPublicComponent, MenuPrivateComponent, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
