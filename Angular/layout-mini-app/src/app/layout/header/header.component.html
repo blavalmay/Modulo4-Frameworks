@@ -1,7 +1,12 @@
 <mat-toolbar>
-  <button mat-icon-button class="header-menu" aria-label="Menu icon">
+  <button mat-icon-button class="header-menu" aria-label="Menu icon" [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
   <div class="header-title">My App</div>
   <button mat-button>Login/Logout</button>
 </mat-toolbar>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/home" routerLinkActive="selected">Home</button>
+  <button mat-menu-item routerLink="/login" routerLinkActive="selected">Login</button>
+  <button mat-menu-item routerLink="/about" routerLinkActive="selected">About</button>
+</mat-menu>
