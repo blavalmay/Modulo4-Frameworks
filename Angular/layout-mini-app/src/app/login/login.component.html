@@ -1,1 +1,21 @@
-<p>login works!</p>
+<h1>Login</h1>
+<form class="login-form" #loginForm="ngForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="userCredentials.username" placeholder="username" name="username" required email #username="ngModel">
+  </mat-form-field>
+  <div *ngIf="username.invalid && username.touched" class="login-form__error">
+    <div *ngIf="username.errors!['required']">El usuario es obligatorio.</div>
+    <div *ngIf="username.errors!['email']">El usuario debe ser un email, por lo que debe contener al menos una "&#64;" y un punto.</div>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="userCredentials.password" placeholder="password" name="password" type="password" required minlength="6" #password="ngModel">
+  </mat-form-field>
+  <div *ngIf="password.invalid && password.touched" class="login-form__error">
+    <div *ngIf="password.errors!['required']">La contraseña es obligatoria.</div>
+    <div *ngIf="password.errors!['minlength']">La contraseña debe tener {{ password.errors!['minlength'].requiredLength }} caracteres mínimo. Tiene solamente {{ password.errors!['minlength'].actualLength }}.</div>
+  </div>
+  <button mat-flat-button [disabled]="loginForm.invalid" (click)="login()">Login</button>
+</form>
+
