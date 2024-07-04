@@ -4,12 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
-
-interface UserCredentials {
-  username: string;
-  password: string;
-}
+import { AuthService } from '../services/auth.service';
+import { UserCredentials } from '../model';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +17,7 @@ interface UserCredentials {
 export class LoginComponent {
   userCredentials: UserCredentials;
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.userCredentials = {
@@ -30,11 +26,8 @@ export class LoginComponent {
     }
   }
 
-  login(): boolean {
-    if(this.userCredentials.username === 'master@lemoncode.net' && this.userCredentials.password === '12345678') {
-      this.router.navigate(['/dashboard']);
-      return true;
-    }
-    return false;
+  login() {
+    this.authService.login(this.userCredentials.username, this.userCredentials.password)
   }
+
 }
