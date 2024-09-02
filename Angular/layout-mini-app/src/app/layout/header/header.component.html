@@ -2,11 +2,18 @@
   <button mat-icon-button class="header-menu" aria-label="Menu icon" [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
-  <div class="header-title">My App: {{username}}</div>
-  <button mat-button (click)="logout()">Login/Logout</button>
+  <div class="header-title">My App</div>
+  <div class="header-logged" *ngIf="userlogged">
+    <div>Welcome, {{ username }}</div>
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="/home" routerLinkActive="selected">Home</button>
-  <button mat-menu-item routerLink="/login" routerLinkActive="selected">Login</button>
-  <button mat-menu-item routerLink="/about" routerLinkActive="selected">About</button>
+  <button *ngIf="!userlogged" mat-menu-item routerLink="/home" routerLinkActive="selected">Home</button>
+  <button *ngIf="!userlogged" mat-menu-item routerLink="/login" routerLinkActive="selected">Login</button>
+  <button *ngIf="!userlogged" mat-menu-item routerLink="/about" routerLinkActive="selected">About</button>
+  <button *ngIf="userlogged" mat-menu-item routerLink="/dashboard" routerLinkActive="selected">Dashboard</button>
+  <button *ngIf="userlogged" mat-menu-item routerLink="/gallery" routerLinkActive="selected">Gallery</button>
+  <button *ngIf="userlogged" mat-menu-item routerLink="/crud" routerLinkActive="selected">CRUD</button>
+  <button *ngIf="userlogged" mat-menu-item routerLink="/profile" routerLinkActive="selected">Profile</button>
 </mat-menu>

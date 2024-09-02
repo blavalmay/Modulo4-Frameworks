@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +9,27 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  isLogged: boolean = false;
-  getUsername: string = '';
+  private user = new BehaviorSubject<string>('');
+  getUsername = this.user.asObservable();
+
+  private logged = new BehaviorSubject<boolean>(false);
+  isLogged = this.logged.asObservable();
 
   login(username: string, password: string): boolean {
     if(username === 'master@lemoncode.net' && password === '12345678') {
+      this.user.next(username);
+      this.logged.next(true);
       this.router.navigate(['/dashboard']);
-      this.isLogged = true;
-      this.getUsername = username;
       return true;
     }
-    this.isLogged = false;
-    this.getUsername = '';
+    this.user.next('');
+    this.logged.next(false);
     return false;
   }
 
   logout(): void {
-    this.isLogged = false;
-    this.getUsername = '';
+    this.logged.next(false);
+    this.user.next('');
     this.router.navigate(['/home']);
   }
 }

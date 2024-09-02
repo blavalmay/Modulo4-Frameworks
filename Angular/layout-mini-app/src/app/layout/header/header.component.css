@@ -2,6 +2,14 @@
   flex-grow: 1;
 }
 
+.header-logged {
+  display: flex;
+
+  button {
+    margin-left: 1rem;
+  }
+}
+
 .selected {
   background-color: #d7e3ff;
   color: #005cbb;
