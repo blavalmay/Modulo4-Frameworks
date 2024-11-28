@@ -1,0 +1,4 @@
+<template>
+    <TheTaskForm/>
+    <TheTasksList/>
+</template>
