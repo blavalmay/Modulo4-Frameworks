@@ -25,16 +25,18 @@ export const useTaskList = defineStore('taskList', () => {
     }
 
     const checkTask = (checked: boolean, checkedTask: TheTask) => {
-        if(checked === false) {
-            allTasksCheckbox.value = checked;
-        }
-        // TODO: filter if all tasks are checked allTasksCheckbox must be checked too
         const updateCheckedTask = {
             description: checkedTask.description,
             id: checkedTask.id,
             completed: checked,
         }
-        return tasksList.value.splice(tasksList.value.findIndex((task: TheTask) => task.id === checkedTask.id), 1, updateCheckedTask);
+
+        tasksList.value.splice(tasksList.value.findIndex((task: TheTask) => task.id === checkedTask.id), 1, updateCheckedTask);
+        if(checked === false) {
+            allTasksCheckbox.value = checked;
+        } else if (!tasksList.value.some((task) => task.completed === false)) {
+            allTasksCheckbox.value = true;
+        }
     }
 
     const checkAllTasks = (checked: boolean) => {
