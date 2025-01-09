@@ -1,3 +1,4 @@
+import { Checkbox } from '@mui/material';
 <template>
     <h2 class="mt-6">Task List:</h2>
     <div class="p-3 pb-1 mt-3 rounded border">
@@ -7,8 +8,10 @@
             <li v-if="taskList.tasksList.length > 0" class="flex justify-between mb-2">
                 <input
                     type="checkbox"
+                    :checked="taskList.allTasksCheckbox"
                     title="Check to complete all tasks"
                     class="mr-2 cursor-pointer"
+                    @change="(event) => taskList.checkAllTasks((<HTMLInputElement>event.target).checked)"
                 >
                 <button
                     class="text-red-600 hover:text-red-400"
@@ -23,6 +26,7 @@
                     :checked="task.completed"
                     title="Check if completed, uncheck if pending"
                     class="mr-2 cursor-pointer"
+                    @change="(event) => taskList.checkTask((<HTMLInputElement>event.target).checked, task)"
                 >
                 <span class="block grow font-light">{{ task.description }}</span>
                 <button
