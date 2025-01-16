@@ -30,12 +30,13 @@
             <li class="flex mb-2 gap-2" v-for="task in filteredTasks" :key="task.id">
                 <input
                     type="checkbox"
+                    :id="task.id"
                     :checked="task.completed"
                     title="Check if completed, uncheck if pending"
                     class="cursor-pointer"
                     @change="(event) => taskList.checkTask((<HTMLInputElement>event.target).checked, task)"
                 >
-                <span class="block grow font-light">{{ task.description }}</span>
+                <label class="block grow font-light cursor-pointer" :for="task.id">{{ task.description }}</label>
                 <button
                     class="text-red-600 hover:text-red-400"
                     aria-label="Delete task"

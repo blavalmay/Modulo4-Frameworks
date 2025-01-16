@@ -6,7 +6,6 @@
                 type="text"
                 name="new-task"
                 v-model="task"
-                @keyup="onKeyUp"
                 class="border-b text-sm font-light h-8 px-2"
             >
         </div>
@@ -24,11 +23,5 @@
     const onSubmit = async () => {
         taskList.addNewTask(task.value);
         task.value = '';
-    };
-
-    const onKeyUp = (event: KeyboardEvent) => {
-        if (event.key === 'Enter') {
-            return onSubmit();
-        }
     };
 </script>
