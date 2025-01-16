@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-type TheTask = {
+export type TheTask = {
     description: string;
     id: string;
     completed: boolean;
