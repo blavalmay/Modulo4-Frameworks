@@ -1,24 +1,26 @@
 <template>
     <div class="flex justify-between flex-wrap gap-2 items-end mt-6">
         <h2 class="grow">TASK LIST</h2>
-        <button
-            title="Show only completed tasks"
-            :class="{ 'bg-indigo-600': showCompleted, 'bg-indigo-400': !showCompleted }"
-            @click="toggleShowCompleted"
-            class="px-3 h-8 text-white rounded"
-        >Completed</button>
-        <button
-            title="Show only pending tasks"
-            :class="{ 'bg-indigo-600': showPending, 'bg-indigo-400': !showPending }"
-            @click="toggleShowPending"
-            class="px-3 h-8 text-white rounded"
-        >Pending</button>
-        <input 
-            type="text"
-            class="border rounded px-2 py-1 font-light max-w-full"
-            placeholder="Search..."
-            v-model="taskFilter"
-        >
+        <template v-if="taskList.tasksList.length > 0">
+            <button
+                title="Show only completed tasks"
+                :class="{ 'bg-indigo-600': showCompleted, 'bg-indigo-400': !showCompleted }"
+                @click="toggleShowCompleted"
+                class="px-3 h-8 text-white rounded"
+            >Completed</button>
+            <button
+                title="Show only pending tasks"
+                :class="{ 'bg-indigo-600': showPending, 'bg-indigo-400': !showPending }"
+                @click="toggleShowPending"
+                class="px-3 h-8 text-white rounded"
+            >Pending</button>
+            <input 
+                type="text"
+                class="border rounded px-2 py-1 font-light max-w-full"
+                placeholder="Search..."
+                v-model="taskFilter"
+            >
+        </template>
     </div>
     <TheTasksListItems :filteredTasks="filteredTasks"/>
 </template>
