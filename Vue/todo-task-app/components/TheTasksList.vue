@@ -20,43 +20,7 @@
             v-model="taskFilter"
         >
     </div>
-    <div class="p-3 pb-1 mt-3 rounded border">
-        <p 
-        v-if="taskList.tasksList.length === 0" class="font-light mb-2">The task list is empty.</p>
-        <ul>
-            <li v-if="taskList.tasksList.length > 0" class="flex justify-between gap-2 mb-2">
-                <input
-                    type="checkbox"
-                    :checked="taskList.allTasksCheckbox"
-                    title="Check to complete/uncomplete all tasks"
-                    class="cursor-pointer"
-                    @change="(event) => taskList.checkAllTasks((<HTMLInputElement>event.target).checked)"
-                >
-                <button
-                    class="text-red-600 hover:text-red-400"
-                    aria-label="Delete all tasks"
-                    @click="taskList.removeAllTasks"
-                >Delete all</button>
-            </li>
-            <hr v-if="taskList.tasksList.length > 0" class="mb-2">
-            <li class="flex mb-2 gap-2" v-for="task in filteredTasks" :key="task.id">
-                <input
-                    type="checkbox"
-                    :id="task.id"
-                    :checked="task.completed"
-                    title="Check if completed, uncheck if pending"
-                    class="cursor-pointer"
-                    @change="(event) => taskList.checkTask((<HTMLInputElement>event.target).checked, task)"
-                >
-                <label class="block grow font-light cursor-pointer" :for="task.id">{{ task.description }}</label>
-                <button
-                    class="text-red-600 hover:text-red-400"
-                    aria-label="Delete task"
-                    @click="taskList.removeTask(task.id)"
-                >Delete</button>
-            </li>
-        </ul>
-    </div>
+    <TheTasksListItems :filteredTasks="filteredTasks"/>
 </template>
 
 <script setup lang="ts">
